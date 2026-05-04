@@ -33,9 +33,7 @@
         padding: 0;
         box-sizing: border-box;
       }
-      html {
-        scroll-behavior: smooth;
-      }
+      html { scroll-behavior: smooth; }
 
       body {
         background: var(--black);
@@ -97,10 +95,7 @@
         gap: 10px;
         text-decoration: none;
       }
-      .nav-logo svg {
-        width: 32px;
-        height: 32px;
-      }
+      .nav-logo svg { width: 32px; height: 32px; }
       .nav-wordmark {
         font-family: var(--font-display);
         font-size: 18px;
@@ -122,16 +117,12 @@
         text-decoration: none;
         transition: color 0.2s;
       }
-      .nav-links a:hover {
-        color: var(--white);
-      }
+      .nav-links a:hover { color: var(--white); }
       .nav-cta {
         color: var(--blue) !important;
         border: 1px solid var(--blue);
         padding: 8px 16px;
-        transition:
-          background 0.2s,
-          color 0.2s !important;
+        transition: background 0.2s, color 0.2s !important;
       }
       .nav-cta:hover {
         background: var(--blue) !important;
@@ -152,11 +143,7 @@
       .hero-bg {
         position: absolute;
         inset: 0;
-        background: radial-gradient(
-          ellipse 60% 50% at 70% 40%,
-          rgba(41, 121, 255, 0.08) 0%,
-          transparent 70%
-        );
+        background: radial-gradient(ellipse 60% 50% at 70% 40%, rgba(41, 121, 255, 0.08) 0%, transparent 70%);
       }
 
       .hero-grid {
@@ -167,11 +154,7 @@
           linear-gradient(90deg, var(--border) 1px, transparent 1px);
         background-size: 60px 60px;
         opacity: 0.3;
-        mask-image: radial-gradient(
-          ellipse 80% 80% at 50% 50%,
-          black,
-          transparent
-        );
+        mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent);
       }
 
       .hero-counter {
@@ -193,9 +176,7 @@
         animation: fadeUp 1s ease both 0.3s;
       }
 
-      .hero-title .accent {
-        color: var(--blue);
-      }
+      .hero-title .accent { color: var(--blue); }
       .hero-title .serif-line {
         font-family: var(--font-serif);
         font-style: italic;
@@ -221,19 +202,14 @@
         max-width: 340px;
       }
 
-      .hero-stats {
-        display: flex;
-        gap: 48px;
-      }
+      .hero-stats { display: flex; gap: 48px; }
       .stat-num {
         font-family: var(--font-display);
         font-size: 48px;
         color: var(--white);
         line-height: 1;
       }
-      .stat-num span {
-        color: var(--blue);
-      }
+      .stat-num span { color: var(--blue); }
       .stat-label {
         font-size: 9px;
         letter-spacing: 0.2em;
@@ -263,19 +239,12 @@
         animation: scrollPulse 2s ease infinite;
       }
       @keyframes scrollPulse {
-        0%,
-        100% {
-          opacity: 0.3;
-        }
-        50% {
-          opacity: 1;
-        }
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 1; }
       }
 
       /* SECTIONS */
-      section {
-        padding: 120px 48px;
-      }
+      section { padding: 120px 48px; }
       .section-tag {
         font-size: 10px;
         letter-spacing: 0.3em;
@@ -301,9 +270,7 @@
       }
 
       /* PROJECTS */
-      #projects {
-        background: var(--deep);
-      }
+      #projects { background: var(--deep); }
       .projects-header {
         display: flex;
         align-items: flex-end;
@@ -336,21 +303,13 @@
         content: "";
         position: absolute;
         inset: 0;
-        background: radial-gradient(
-          ellipse 60% 60% at var(--mx, 50%) var(--my, 50%),
-          var(--blue-glow),
-          transparent
-        );
+        background: radial-gradient(ellipse 60% 60% at var(--mx, 50%) var(--my, 50%), var(--blue-glow), transparent);
         opacity: 0;
         transition: opacity 0.4s;
       }
 
-      .project-card:hover::before {
-        opacity: 1;
-      }
-      .project-card:hover {
-        border-color: var(--border-light);
-      }
+      .project-card:hover::before { opacity: 1; }
+      .project-card:hover { border-color: var(--border-light); }
 
       .project-number {
         font-size: 10px;
@@ -409,6 +368,7 @@
         overflow: hidden;
       }
 
+      /* Project link — now a button-style trigger */
       .project-link {
         display: inline-flex;
         align-items: center;
@@ -418,14 +378,179 @@
         text-transform: uppercase;
         color: var(--blue);
         text-decoration: none;
+        background: none;
+        border: none;
+        font-family: var(--font-body);
+        cursor: none;
+        padding: 0;
         transition: gap 0.2s;
       }
-      .project-link:hover {
-        gap: 14px;
-      }
+      .project-link:hover { gap: 14px; }
       .project-link::after {
         content: "→";
         font-size: 14px;
+      }
+      /* Disabled state — no video available */
+      .project-link.no-video {
+        color: var(--muted);
+        pointer-events: none;
+      }
+      .project-link.no-video::after { content: ""; }
+
+      /* =====================
+         VIDEO MODAL
+         ===================== */
+      .modal-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(8, 8, 8, 0);
+        backdrop-filter: blur(0px);
+        pointer-events: none;
+        transition: background 0.4s ease, backdrop-filter 0.4s ease;
+      }
+      .modal-overlay.active {
+        background: rgba(8, 8, 8, 0.92);
+        backdrop-filter: blur(16px);
+        pointer-events: all;
+      }
+
+      .modal-box {
+        width: min(880px, 92vw);
+        background: var(--surface);
+        border: 1px solid var(--border-light);
+        position: relative;
+        opacity: 0;
+        transform: translateY(32px) scale(0.97);
+        transition: opacity 0.4s ease, transform 0.4s ease;
+        box-shadow: 0 0 80px rgba(41, 121, 255, 0.12), 0 40px 80px rgba(0,0,0,0.6);
+      }
+      .modal-overlay.active .modal-box {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      /* Corner decorations */
+      .modal-corner {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+      }
+      .modal-corner.tl { top: 10px; left: 10px; border-top: 1px solid var(--blue); border-left: 1px solid var(--blue); }
+      .modal-corner.tr { top: 10px; right: 10px; border-top: 1px solid var(--blue); border-right: 1px solid var(--blue); }
+      .modal-corner.bl { bottom: 10px; left: 10px; border-bottom: 1px solid var(--blue); border-left: 1px solid var(--blue); }
+      .modal-corner.br { bottom: 10px; right: 10px; border-bottom: 1px solid var(--blue); border-right: 1px solid var(--blue); }
+
+      .modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 28px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .modal-meta {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .modal-label {
+        font-size: 9px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: var(--blue);
+      }
+      .modal-title {
+        font-family: var(--font-display);
+        font-size: 22px;
+        letter-spacing: 0.06em;
+        color: var(--white);
+      }
+      .modal-sep {
+        width: 1px;
+        height: 18px;
+        background: var(--border-light);
+      }
+
+      .modal-close {
+        width: 36px;
+        height: 36px;
+        border: 1px solid var(--border-light);
+        background: none;
+        color: var(--muted-light);
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: none;
+        transition: border-color 0.2s, color 0.2s;
+        flex-shrink: 0;
+        font-family: var(--font-body);
+      }
+      .modal-close:hover {
+        border-color: var(--blue);
+        color: var(--white);
+      }
+
+      .modal-video-wrap {
+        position: relative;
+        /* For Shorts-style (9:16) videos, constrain height */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #000;
+        min-height: 200px;
+      }
+
+      /* Aspect ratio wrapper — supports both 16:9 and 9:16 */
+      .video-ratio {
+        width: 100%;
+      }
+      .video-ratio.landscape {
+        padding-top: 56.25%; /* 16:9 */
+      }
+      .video-ratio.portrait {
+        /* Show at a sensible height for vertical video */
+        max-width: 360px;
+        padding-top: 0;
+        height: 640px;
+        width: 360px;
+      }
+      .video-ratio iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      /* Portrait: iframe not absolutely positioned */
+      .video-ratio.portrait iframe {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .modal-footer {
+        padding: 16px 28px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .modal-footer-note {
+        font-size: 10px;
+        color: var(--muted);
+        letter-spacing: 0.1em;
+      }
+      .modal-footer-tag {
+        font-size: 9px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--blue);
+        border: 1px solid rgba(41,121,255,0.3);
+        padding: 4px 10px;
       }
 
       /* ABOUT */
@@ -486,30 +611,10 @@
         width: 20px;
         height: 20px;
       }
-      .about-corner.tl {
-        top: 12px;
-        left: 12px;
-        border-top: 1px solid var(--blue);
-        border-left: 1px solid var(--blue);
-      }
-      .about-corner.tr {
-        top: 12px;
-        right: 12px;
-        border-top: 1px solid var(--blue);
-        border-right: 1px solid var(--blue);
-      }
-      .about-corner.bl {
-        bottom: 12px;
-        left: 12px;
-        border-bottom: 1px solid var(--blue);
-        border-left: 1px solid var(--blue);
-      }
-      .about-corner.br {
-        bottom: 12px;
-        right: 12px;
-        border-bottom: 1px solid var(--blue);
-        border-right: 1px solid var(--blue);
-      }
+      .about-corner.tl { top: 12px; left: 12px; border-top: 1px solid var(--blue); border-left: 1px solid var(--blue); }
+      .about-corner.tr { top: 12px; right: 12px; border-top: 1px solid var(--blue); border-right: 1px solid var(--blue); }
+      .about-corner.bl { bottom: 12px; left: 12px; border-bottom: 1px solid var(--blue); border-left: 1px solid var(--blue); }
+      .about-corner.br { bottom: 12px; right: 12px; border-bottom: 1px solid var(--blue); border-right: 1px solid var(--blue); }
 
       .about-bio {
         font-size: 13px;
@@ -517,10 +622,7 @@
         color: var(--muted-light);
         margin-bottom: 40px;
       }
-      .about-bio strong {
-        color: var(--white);
-        font-weight: 500;
-      }
+      .about-bio strong { color: var(--white); font-weight: 500; }
 
       .skills-grid {
         display: grid;
@@ -533,29 +635,11 @@
         border: 1px solid var(--border);
         padding: 16px 20px;
       }
-      .skill-name {
-        font-size: 11px;
-        letter-spacing: 0.1em;
-        margin-bottom: 8px;
-      }
-      .skill-bar {
-        height: 2px;
-        background: var(--border-light);
-        position: relative;
-      }
-      .skill-fill {
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        background: var(--blue);
-      }
+      .skill-name { font-size: 11px; letter-spacing: 0.1em; margin-bottom: 8px; }
+      .skill-bar { height: 2px; background: var(--border-light); position: relative; }
+      .skill-fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--blue); }
 
-      .about-values {
-        display: flex;
-        flex-direction: column;
-        gap: 2px;
-      }
+      .about-values { display: flex; flex-direction: column; gap: 2px; }
       .value-row {
         display: flex;
         align-items: center;
@@ -566,11 +650,7 @@
         font-size: 12px;
         color: var(--muted-light);
       }
-      .value-icon {
-        color: var(--blue);
-        font-size: 14px;
-        flex-shrink: 0;
-      }
+      .value-icon { color: var(--blue); font-size: 14px; flex-shrink: 0; }
 
       /* CONTACT */
       #contact {
@@ -586,11 +666,7 @@
         transform: translate(-50%, -50%);
         width: 500px;
         height: 500px;
-        background: radial-gradient(
-          circle,
-          rgba(41, 121, 255, 0.1),
-          transparent 70%
-        );
+        background: radial-gradient(circle, rgba(41, 121, 255, 0.1), transparent 70%);
         pointer-events: none;
       }
 
@@ -602,9 +678,7 @@
         position: relative;
         margin-bottom: 8px;
       }
-      .contact-title span {
-        color: var(--blue);
-      }
+      .contact-title span { color: var(--blue); }
       .contact-sub {
         font-family: var(--font-serif);
         font-style: italic;
@@ -638,23 +712,15 @@
         transition: border-color 0.2s;
         letter-spacing: 0.05em;
       }
-      .form-field::placeholder {
-        color: var(--muted);
-      }
-      .form-field:focus {
-        border-color: var(--blue);
-      }
+      .form-field::placeholder { color: var(--muted); }
+      .form-field:focus { border-color: var(--blue); }
       textarea.form-field {
         resize: none;
         height: 120px;
         margin-bottom: 2px;
         display: block;
       }
-      .form-single {
-        width: 100%;
-        margin-bottom: 2px;
-        display: block;
-      }
+      .form-single { width: 100%; margin-bottom: 2px; display: block; }
 
       .form-submit {
         width: 100%;
@@ -666,16 +732,10 @@
         font-size: 20px;
         letter-spacing: 0.15em;
         cursor: none;
-        transition:
-          background 0.2s,
-          transform 0.1s;
+        transition: background 0.2s, transform 0.1s;
       }
-      .form-submit:hover {
-        background: var(--blue-dim);
-      }
-      .form-submit:active {
-        transform: scale(0.99);
-      }
+      .form-submit:hover { background: var(--blue-dim); }
+      .form-submit:active { transform: scale(0.99); }
 
       .contact-alts {
         display: flex;
@@ -696,14 +756,8 @@
         align-items: center;
         gap: 8px;
       }
-      .contact-alt-link:hover {
-        color: var(--blue);
-      }
-      .contact-divider {
-        width: 1px;
-        height: 16px;
-        background: var(--border-light);
-      }
+      .contact-alt-link:hover { color: var(--blue); }
+      .contact-divider { width: 1px; height: 16px; background: var(--border-light); }
 
       /* FOOTER */
       footer {
@@ -724,89 +778,70 @@
         color: var(--muted);
         letter-spacing: 0.1em;
       }
-      .footer-copy span {
-        color: var(--blue);
-      }
+      .footer-copy span { color: var(--blue); }
 
       /* ANIMATIONS */
       @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(32px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(32px); }
+        to { opacity: 1; transform: translateY(0); }
       }
       .reveal {
         opacity: 0;
         transform: translateY(24px);
-        transition:
-          opacity 0.7s ease,
-          transform 0.7s ease;
+        transition: opacity 0.7s ease, transform 0.7s ease;
       }
-      .reveal.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      .reveal.visible { opacity: 1; transform: translateY(0); }
 
       @media (max-width: 768px) {
-        nav {
-          padding: 16px 24px;
-        }
-        .nav-links {
-          display: none;
-        }
-        .hero,
-        section {
-          padding-left: 24px;
-          padding-right: 24px;
-        }
-        .hero-title {
-          font-size: 64px;
-        }
-        .hero-bottom {
-          flex-direction: column;
-          gap: 32px;
-          align-items: flex-start;
-        }
-        .projects-grid,
-        #about {
-          grid-template-columns: 1fr;
-        }
-        .projects-header {
-          flex-direction: column;
-          gap: 16px;
-          align-items: flex-start;
-        }
-        .about-left {
-          position: static;
-        }
-        .form-row {
-          grid-template-columns: 1fr;
-        }
-        footer {
-          flex-direction: column;
-          gap: 12px;
-          text-align: center;
-        }
-        .hero-stats {
-          gap: 24px;
-        }
-        body {
-          cursor: auto;
-        }
-        .cursor,
-        .cursor-ring {
-          display: none;
-        }
+        nav { padding: 16px 24px; }
+        .nav-links { display: none; }
+        .hero, section { padding-left: 24px; padding-right: 24px; }
+        .hero-title { font-size: 64px; }
+        .hero-bottom { flex-direction: column; gap: 32px; align-items: flex-start; }
+        .projects-grid, #about { grid-template-columns: 1fr; }
+        .projects-header { flex-direction: column; gap: 16px; align-items: flex-start; }
+        .about-left { position: static; }
+        .form-row { grid-template-columns: 1fr; }
+        footer { flex-direction: column; gap: 12px; text-align: center; }
+        .hero-stats { gap: 24px; }
+        body { cursor: auto; }
+        .cursor, .cursor-ring { display: none; }
+        .video-ratio.portrait { height: 480px; max-width: 100%; width: 100%; }
+        .modal-box { width: 96vw; }
       }
     </style>
   </head>
   <body>
     <div class="cursor" id="cursor"></div>
     <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- VIDEO MODAL -->
+    <div class="modal-overlay" id="videoModal" role="dialog" aria-modal="true" aria-label="Project demo video">
+      <div class="modal-box" id="modalBox">
+        <div class="modal-corner tl"></div>
+        <div class="modal-corner tr"></div>
+        <div class="modal-corner bl"></div>
+        <div class="modal-corner br"></div>
+
+        <div class="modal-header">
+          <div class="modal-meta">
+            <span class="modal-label">Case Study</span>
+            <div class="modal-sep"></div>
+            <span class="modal-title" id="modalTitle">PROJECT DEMO</span>
+          </div>
+          <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+        </div>
+
+        <div class="modal-video-wrap" id="modalVideoWrap">
+          <!-- iframe injected by JS -->
+        </div>
+
+        <div class="modal-footer">
+          <span class="modal-footer-note">Press <kbd style="border:1px solid var(--border-light);padding:1px 5px;font-family:var(--font-body);font-size:9px;">ESC</kbd> to close</span>
+          <span class="modal-footer-tag" id="modalTag">Demo</span>
+        </div>
+      </div>
+    </div>
 
     <!-- NAV -->
     <nav>
@@ -816,83 +851,15 @@
           <circle cx="22" cy="40" r="7" fill="#2979FF" />
           <circle cx="19" cy="38" r="2" fill="#080808" />
           <circle cx="18.5" cy="37.5" r="0.8" fill="white" />
-          <line
-            x1="28"
-            y1="50"
-            x2="22"
-            y2="60"
-            stroke="#2979FF"
-            stroke-width="2.5"
-            stroke-linecap="round"
-          />
-          <line
-            x1="36"
-            y1="51"
-            x2="31"
-            y2="62"
-            stroke="#2979FF"
-            stroke-width="2.5"
-            stroke-linecap="round"
-          />
-          <line
-            x1="44"
-            y1="51"
-            x2="40"
-            y2="62"
-            stroke="#2979FF"
-            stroke-width="2.5"
-            stroke-linecap="round"
-          />
-          <line
-            x1="54"
-            y1="50"
-            x2="51"
-            y2="61"
-            stroke="#2979FF"
-            stroke-width="2.5"
-            stroke-linecap="round"
-          />
-          <line
-            x1="28"
-            y1="30"
-            x2="22"
-            y2="20"
-            stroke="#2979FF"
-            stroke-width="2.5"
-            stroke-linecap="round"
-          />
-          <line
-            x1="36"
-            y1="29"
-            x2="31"
-            y2="18"
-            stroke="#2979FF"
-            stroke-width="2.5"
-            stroke-linecap="round"
-          />
-          <line
-            x1="44"
-            y1="29"
-            x2="40"
-            y2="18"
-            stroke="#2979FF"
-            stroke-width="2.5"
-            stroke-linecap="round"
-          />
-          <line
-            x1="54"
-            y1="30"
-            x2="51"
-            y2="19"
-            stroke="#2979FF"
-            stroke-width="2.5"
-            stroke-linecap="round"
-          />
-          <path
-            d="M57 40 Q65 38 68 40 Q65 42 57 40Z"
-            fill="#2979FF"
-            opacity="0.7"
-          />
+          <line x1="28" y1="50" x2="22" y2="60" stroke="#2979FF" stroke-width="2.5" stroke-linecap="round" />
+          <line x1="36" y1="51" x2="31" y2="62" stroke="#2979FF" stroke-width="2.5" stroke-linecap="round" />
+          <line x1="44" y1="51" x2="40" y2="62" stroke="#2979FF" stroke-width="2.5" stroke-linecap="round" />
+          <line x1="54" y1="50" x2="51" y2="61" stroke="#2979FF" stroke-width="2.5" stroke-linecap="round" />
+          <line x1="28" y1="30" x2="22" y2="20" stroke="#2979FF" stroke-width="2.5" stroke-linecap="round" />
+          <line x1="36" y1="29" x2="31" y2="18" stroke="#2979FF" stroke-width="2.5" stroke-linecap="round" />
+          <line x1="44" y1="29" x2="40" y2="18" stroke="#2979FF" stroke-width="2.5" stroke-linecap="round" />
+          <line x1="54" y1="30" x2="51" y2="19" stroke="#2979FF" stroke-width="2.5" stroke-linecap="round" />
+          <path d="M57 40 Q65 38 68 40 Q65 42 57 40Z" fill="#2979FF" opacity="0.7" />
         </svg>
         <span class="nav-wordmark">TARDIGRADE STUDIO</span>
       </a>
@@ -954,59 +921,19 @@
         </p>
       </div>
       <div class="projects-grid">
-        <div
-          class="project-card"
-          onmousemove="trackMouse(event, this)"
-          style="transition-delay: 0.2s"
-        >
+
+        <!-- Project 03: Subdy -->
+        <div class="project-card" onmousemove="trackMouse(event, this)" style="transition-delay: 0.2s">
           <div class="project-number">03 / 04</div>
           <div class="project-visual">
             <svg width="120" height="80" viewBox="0 0 120 80" fill="none">
-              <rect
-                x="42"
-                y="8"
-                width="36"
-                height="64"
-                rx="4"
-                stroke="#2979FF"
-                stroke-width="1"
-                opacity="0.6"
-              />
-              <rect
-                x="46"
-                y="14"
-                width="28"
-                height="18"
-                rx="2"
-                fill="#2979FF"
-                opacity="0.12"
-              />
+              <rect x="42" y="8" width="36" height="64" rx="4" stroke="#2979FF" stroke-width="1" opacity="0.6" />
+              <rect x="46" y="14" width="28" height="18" rx="2" fill="#2979FF" opacity="0.12" />
               <rect x="46" y="36" width="28" height="5" rx="1" fill="#2a2a34" />
               <rect x="46" y="45" width="18" height="5" rx="1" fill="#2a2a34" />
-              <rect
-                x="46"
-                y="56"
-                width="28"
-                height="8"
-                rx="1"
-                fill="#2979FF"
-                opacity="0.6"
-              />
-              <circle
-                cx="60"
-                cy="23"
-                r="5"
-                fill="#2979FF"
-                opacity="0.5"
-                stroke="#2979FF"
-              />
-              <path
-                d="M57 23 L59 25 L63 21"
-                stroke="white"
-                stroke-width="1.2"
-                stroke-linecap="round"
-                fill="none"
-              />
+              <rect x="46" y="56" width="28" height="8" rx="1" fill="#2979FF" opacity="0.6" />
+              <circle cx="60" cy="23" r="5" fill="#2979FF" opacity="0.5" stroke="#2979FF" />
+              <path d="M57 23 L59 25 L63 21" stroke="white" stroke-width="1.2" stroke-linecap="round" fill="none" />
             </svg>
           </div>
           <div class="project-type">📱 Mobile App</div>
@@ -1017,68 +944,27 @@
             a clean dashboard that saves money on autopilot.
           </p>
           <div class="project-tags">
-            <span class="ptag">React Native</span><span class="ptag">Expo</span
-            ><span class="ptag">Clerk</span><span class="ptag">PostHog</span>
+            <span class="ptag">React Native</span><span class="ptag">Expo</span>
+            <span class="ptag">Clerk</span><span class="ptag">PostHog</span>
           </div>
-          <a
-            href="https://www.youtube.com/shorts/JK6XlPAhG00"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
             class="project-link"
-          >
-            View Case Study
-          </a>
+            onclick="openModal('SUBDY APP', 'JK6XlPAhG00', 'portrait', '📱 Mobile App')"
+          >View Case Study</button>
         </div>
 
-        <div
-          class="project-card reveal"
-          onmousemove="trackMouse(event, this)"
-          style="transition-delay: 0.3s"
-        >
+        <!-- Project 04: Fast Food -->
+        <div class="project-card reveal" onmousemove="trackMouse(event, this)" style="transition-delay: 0.3s">
           <div class="project-number">04 / 04</div>
           <div class="project-visual">
             <svg width="120" height="80" viewBox="0 0 120 80" fill="none">
-              <rect
-                x="42"
-                y="8"
-                width="36"
-                height="64"
-                rx="4"
-                stroke="#2979FF"
-                stroke-width="1"
-                opacity="0.6"
-              />
-              <circle
-                cx="60"
-                cy="30"
-                r="10"
-                fill="#2979FF"
-                opacity="0.12"
-                stroke="#2979FF"
-              />
-              <path
-                d="M55 30 Q60 23 65 30 Q60 37 55 30Z"
-                fill="#2979FF"
-                opacity="0.6"
-              />
+              <rect x="42" y="8" width="36" height="64" rx="4" stroke="#2979FF" stroke-width="1" opacity="0.6" />
+              <circle cx="60" cy="30" r="10" fill="#2979FF" opacity="0.12" stroke="#2979FF" />
+              <path d="M55 30 Q60 23 65 30 Q60 37 55 30Z" fill="#2979FF" opacity="0.6" />
               <rect x="46" y="46" width="28" height="5" rx="1" fill="#2a2a34" />
-              <rect
-                x="46"
-                y="55"
-                width="18"
-                height="5"
-                rx="1"
-                fill="#2979FF"
-                opacity="0.5"
-              />
+              <rect x="46" y="55" width="18" height="5" rx="1" fill="#2979FF" opacity="0.5" />
               <circle cx="68" cy="57" r="4" fill="#2979FF" opacity="0.8" />
-              <path
-                d="M66 57 L68 59 L71 55"
-                stroke="white"
-                stroke-width="1"
-                stroke-linecap="round"
-                fill="none"
-              />
+              <path d="M66 57 L68 59 L71 55" stroke="white" stroke-width="1" stroke-linecap="round" fill="none" />
             </svg>
           </div>
           <div class="project-type">📱 Mobile App</div>
@@ -1088,78 +974,28 @@
             frictionless checkout. Built for speed — in every sense of the word.
           </p>
           <div class="project-tags">
-            <span class="ptag">Zustand</span><span class="ptag">EAS</span
-            ><span class="ptag">Nativewind</span
-            ><span class="ptag">Appwrite</span>
+            <span class="ptag">Zustand</span><span class="ptag">EAS</span>
+            <span class="ptag">Nativewind</span><span class="ptag">Appwrite</span>
           </div>
-          <a
-            href="https://youtube.com/shorts/bAIoZ-tun14?si=kgx0T_NkSV8Wa1UU"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
             class="project-link"
-          >
-            View Case Study
-          </a>
+            onclick="openModal('FAST FOOD DELIVERY', 'bAIoZ-tun14', 'portrait', '📱 Mobile App')"
+          >View Case Study</button>
         </div>
 
+        <!-- Project 01: ShopFront -->
         <div class="project-card reveal" onmousemove="trackMouse(event, this)">
           <div class="project-number">01 / 04</div>
           <div class="project-visual">
             <svg width="120" height="80" viewBox="0 0 120 80" fill="none">
-              <rect
-                x="10"
-                y="10"
-                width="100"
-                height="60"
-                rx="2"
-                stroke="#2979FF"
-                stroke-width="1"
-                opacity="0.6"
-              />
-              <rect
-                x="20"
-                y="20"
-                width="35"
-                height="35"
-                rx="1"
-                fill="#1c1c22"
-                stroke="#2a2a34"
-              />
-              <rect
-                x="62"
-                y="20"
-                width="38"
-                height="6"
-                rx="1"
-                fill="#2979FF"
-                opacity="0.4"
-              />
+              <rect x="10" y="10" width="100" height="60" rx="2" stroke="#2979FF" stroke-width="1" opacity="0.6" />
+              <rect x="20" y="20" width="35" height="35" rx="1" fill="#1c1c22" stroke="#2a2a34" />
+              <rect x="62" y="20" width="38" height="6" rx="1" fill="#2979FF" opacity="0.4" />
               <rect x="62" y="30" width="30" height="4" rx="1" fill="#2a2a34" />
               <rect x="62" y="38" width="24" height="4" rx="1" fill="#2a2a34" />
-              <rect
-                x="62"
-                y="50"
-                width="22"
-                height="10"
-                rx="1"
-                fill="#2979FF"
-                opacity="0.8"
-              />
-              <circle
-                cx="37"
-                cy="37"
-                r="10"
-                fill="#2979FF"
-                opacity="0.1"
-                stroke="#2979FF"
-              />
-              <path
-                d="M32 37 L36 41 L43 33"
-                stroke="#2979FF"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                fill="none"
-              />
+              <rect x="62" y="50" width="22" height="10" rx="1" fill="#2979FF" opacity="0.8" />
+              <circle cx="37" cy="37" r="10" fill="#2979FF" opacity="0.1" stroke="#2979FF" />
+              <path d="M32 37 L36 41 L43 33" stroke="#2979FF" stroke-width="1.5" stroke-linecap="round" fill="none" />
             </svg>
           </div>
           <div class="project-type">🌐 Website</div>
@@ -1170,71 +1006,25 @@
             optimised for conversion.
           </p>
           <div class="project-tags">
-            <span class="ptag">React</span><span class="ptag">Node.js</span
-            ><span class="ptag">Payment</span><span class="ptag">MySQL</span
-            ><span class="ptag">Tailwind</span>
+            <span class="ptag">React</span><span class="ptag">Node.js</span>
+            <span class="ptag">Payment</span><span class="ptag">MySQL</span>
+            <span class="ptag">Tailwind</span>
           </div>
-          <a
-            href=""
-            target="_blank"
-            rel="noopener noreferrer"
-            class="project-link"
-          >
-            View Case Study
-          </a>
+          <!-- No video yet — visually dimmed -->
+          <span class="project-link no-video">Demo Coming Soon</span>
         </div>
 
-        <div
-          class="project-card reveal"
-          onmousemove="trackMouse(event, this)"
-          style="transition-delay: 0.1s"
-        >
+        <!-- Project 02: Henny Worth -->
+        <div class="project-card reveal" onmousemove="trackMouse(event, this)" style="transition-delay: 0.1s">
           <div class="project-number">02 / 04</div>
           <div class="project-visual">
             <svg width="120" height="80" viewBox="0 0 120 80" fill="none">
-              <circle
-                cx="60"
-                cy="40"
-                r="28"
-                stroke="#2979FF"
-                stroke-width="1"
-                opacity="0.4"
-              />
-              <circle
-                cx="60"
-                cy="40"
-                r="18"
-                stroke="#2979FF"
-                stroke-width="1"
-                opacity="0.25"
-              />
+              <circle cx="60" cy="40" r="28" stroke="#2979FF" stroke-width="1" opacity="0.4" />
+              <circle cx="60" cy="40" r="18" stroke="#2979FF" stroke-width="1" opacity="0.25" />
               <circle cx="60" cy="40" r="6" fill="#2979FF" opacity="0.8" />
-              <line
-                x1="60"
-                y1="12"
-                x2="60"
-                y2="68"
-                stroke="#2979FF"
-                stroke-width="0.5"
-                opacity="0.2"
-              />
-              <line
-                x1="32"
-                y1="40"
-                x2="88"
-                y2="40"
-                stroke="#2979FF"
-                stroke-width="0.5"
-                opacity="0.2"
-              />
-              <path
-                d="M45 25 Q55 15 70 20 Q80 26 75 36"
-                stroke="#2979FF"
-                stroke-width="1.5"
-                fill="none"
-                opacity="0.7"
-                stroke-linecap="round"
-              />
+              <line x1="60" y1="12" x2="60" y2="68" stroke="#2979FF" stroke-width="0.5" opacity="0.2" />
+              <line x1="32" y1="40" x2="88" y2="40" stroke="#2979FF" stroke-width="0.5" opacity="0.2" />
+              <path d="M45 25 Q55 15 70 20 Q80 26 75 36" stroke="#2979FF" stroke-width="1.5" fill="none" opacity="0.7" stroke-linecap="round" />
             </svg>
           </div>
           <div class="project-type">🌐 Website</div>
@@ -1245,11 +1035,13 @@
             aesthetic built to impress labels and fans alike.
           </p>
           <div class="project-tags">
-            <span class="ptag">Next.js</span><span class="ptag">JavaScript</span
-            ><span class="ptag">Spotify API</span><span class="ptag">CMS</span>
+            <span class="ptag">Next.js</span><span class="ptag">JavaScript</span>
+            <span class="ptag">Spotify API</span><span class="ptag">CMS</span>
           </div>
-          <a href="#" class="project-link">View Case Study</a>
+          <!-- No video yet — visually dimmed -->
+          <span class="project-link no-video">Demo Coming Soon</span>
         </div>
+
       </div>
     </section>
 
@@ -1274,14 +1066,14 @@
 
       <div class="about-right">
         <p class="about-bio reveal">
-          I’m a web and mobile app developer with an expertise in building
+          I'm a web and mobile app developer with an expertise in building
           accessible, pixel-perfect applications. I take pride in crafting
           thoughtful, inclusive products and have a sharp eye for the little
           details that elevate user experience. I do my best work at the
           intersection of design and engineering, where great UX meets clean,
-          scalable code. Outside of my day-to-day work, I also created mutliple
+          scalable code. Outside of my day-to-day work, I also created multiple
           Hobby AI tools, specifically Computer Vision and Automation tools that
-          sole some real-world problems in Agriculture, Survialliance and
+          solve some real-world problems in Agriculture, Surveillance and
           Language among others. These experiences have shaped how I think about
           building products that are both well-crafted and widely usable.
         </p>
@@ -1289,59 +1081,35 @@
         <div class="skills-grid reveal">
           <div class="skill-item">
             <div class="skill-name">React / Next.js</div>
-            <div class="skill-bar">
-              <div class="skill-fill" style="width: 90%"></div>
-            </div>
+            <div class="skill-bar"><div class="skill-fill" style="width: 90%"></div></div>
           </div>
           <div class="skill-item">
             <div class="skill-name">React Native</div>
-            <div class="skill-bar">
-              <div class="skill-fill" style="width: 85%"></div>
-            </div>
+            <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
           </div>
           <div class="skill-item">
             <div class="skill-name">CD / CI</div>
-            <div class="skill-bar">
-              <div class="skill-fill" style="width: 80%"></div>
-            </div>
+            <div class="skill-bar"><div class="skill-fill" style="width: 80%"></div></div>
           </div>
           <div class="skill-item">
             <div class="skill-name">Node.js / APIs</div>
-            <div class="skill-bar">
-              <div class="skill-fill" style="width: 88%"></div>
-            </div>
+            <div class="skill-bar"><div class="skill-fill" style="width: 88%"></div></div>
           </div>
           <div class="skill-item">
             <div class="skill-name">PyTorch / LangChain</div>
-            <div class="skill-bar">
-              <div class="skill-fill" style="width: 75%"></div>
-            </div>
+            <div class="skill-bar"><div class="skill-fill" style="width: 75%"></div></div>
           </div>
           <div class="skill-item">
             <div class="skill-name">Clerk / Supabase</div>
-            <div class="skill-bar">
-              <div class="skill-fill" style="width: 82%"></div>
-            </div>
+            <div class="skill-bar"><div class="skill-fill" style="width: 82%"></div></div>
           </div>
         </div>
 
         <div class="about-values reveal">
-          <div class="value-row">
-            <span class="value-icon">✦</span> I iterate until it's right — not
-            just done.
-          </div>
-          <div class="value-row">
-            <span class="value-icon">✦</span> I communicate like a partner, not
-            a vendor.
-          </div>
-          <div class="value-row">
-            <span class="value-icon">✦</span> I care about your users, thier
-            opinion.
-          </div>
-          <div class="value-row">
-            <span class="value-icon">✦</span> Small business or startup — you
-            get my full attention.
-          </div>
+          <div class="value-row"><span class="value-icon">✦</span> I iterate until it's right — not just done.</div>
+          <div class="value-row"><span class="value-icon">✦</span> I communicate like a partner, not a vendor.</div>
+          <div class="value-row"><span class="value-icon">✦</span> I care about your users, their opinion.</div>
+          <div class="value-row"><span class="value-icon">✦</span> Small business or startup — you get my full attention.</div>
         </div>
       </div>
     </section>
@@ -1349,77 +1117,42 @@
     <!-- CONTACT -->
     <section id="contact">
       <div class="contact-glow"></div>
-      <div
-        class="section-tag"
-        style="justify-content: center; margin-bottom: 24px"
-      >
-        <span
-          style="
-            width: 32px;
-            height: 1px;
-            background: var(--blue);
-            display: block;
-          "
-        ></span>
+      <div class="section-tag" style="justify-content: center; margin-bottom: 24px">
+        <span style="width: 32px; height: 1px; background: var(--blue); display: block;"></span>
         Let's Work Together
-        <span
-          style="
-            width: 32px;
-            height: 1px;
-            background: var(--blue);
-            display: block;
-          "
-        ></span>
+        <span style="width: 32px; height: 1px; background: var(--blue); display: block;"></span>
       </div>
       <h2 class="contact-title reveal">GOT A<br /><span>PROJECT?</span></h2>
-      <p class="contact-sub reveal">
-        Let's talk. No commitment, just a conversation.
-      </p>
+      <p class="contact-sub reveal">Let's talk. No commitment, just a conversation.</p>
 
       <div class="contact-form reveal">
         <div class="form-row">
           <input type="text" class="form-field" placeholder="Your name" />
           <input type="email" class="form-field" placeholder="Email address" />
         </div>
-        <input
-          type="text"
-          class="form-field form-single"
-          placeholder="Project type (website / mobile app / both)"
-        />
-        <textarea
-          class="form-field"
-          placeholder="Tell me about your project..."
-        ></textarea>
+        <input type="text" class="form-field form-single" placeholder="Project type (website / mobile app / both)" />
+        <textarea class="form-field" placeholder="Tell me about your project..."></textarea>
         <button class="form-submit" id="submitBtn">SEND IT →</button>
       </div>
 
       <div class="contact-alts reveal">
-        <a href="mailto:mayanjabbaale77@gmail.com" class="contact-alt-link"
-          >✉ mayanjabbaale77@gmail.com</a
-        >
+        <a href="mailto:mayanjabbaale77@gmail.com" class="contact-alt-link">✉ mayanjabbaale77@gmail.com</a>
         <div class="contact-divider"></div>
-        <a href="https://github.com/mayanjabbaale" class="contact-alt-link"
-          >GitHub</a
-        >
+        <a href="https://github.com/mayanjabbaale" class="contact-alt-link">GitHub</a>
       </div>
     </section>
 
     <!-- FOOTER -->
     <footer>
       <div class="footer-logo">TARDIGRADE STUDIO</div>
-      <div class="footer-copy">
-        © 2026 Tardigrade Studio · Built with <span>♥</span> and obsession
-      </div>
+      <div class="footer-copy">© 2026 Tardigrade Studio · Built with <span>♥</span> and obsession</div>
     </footer>
 
     <script>
-      // Cursor
+      // ── Cursor ──────────────────────────────────────────
       const cursor = document.getElementById("cursor");
       const ring = document.getElementById("cursorRing");
-      let mx = 0,
-        my = 0,
-        rx = 0,
-        ry = 0;
+      let mx = 0, my = 0, rx = 0, ry = 0;
 
       document.addEventListener("mousemove", (e) => {
         mx = e.clientX;
@@ -1436,20 +1169,14 @@
         requestAnimationFrame(animateRing);
       })();
 
-      // Card glow tracking
+      // ── Card glow tracking ──────────────────────────────
       function trackMouse(e, card) {
         const r = card.getBoundingClientRect();
-        card.style.setProperty(
-          "--mx",
-          (((e.clientX - r.left) / r.width) * 100).toFixed(1) + "%",
-        );
-        card.style.setProperty(
-          "--my",
-          (((e.clientY - r.top) / r.height) * 100).toFixed(1) + "%",
-        );
+        card.style.setProperty("--mx", (((e.clientX - r.left) / r.width) * 100).toFixed(1) + "%");
+        card.style.setProperty("--my", (((e.clientY - r.top) / r.height) * 100).toFixed(1) + "%");
       }
 
-      // Scroll reveal
+      // ── Scroll reveal ───────────────────────────────────
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -1459,24 +1186,83 @@
             }
           });
         },
-        { threshold: 0.1 },
+        { threshold: 0.1 }
       );
+      document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 
-      document
-        .querySelectorAll(".reveal")
-        .forEach((el) => observer.observe(el));
+      // ── Form submit ─────────────────────────────────────
+      document.getElementById("submitBtn").addEventListener("click", function () {
+        this.textContent = "MESSAGE SENT ✓";
+        this.style.background = "#0d3320";
+        setTimeout(() => {
+          this.textContent = "SEND IT →";
+          this.style.background = "";
+        }, 3000);
+      });
 
-      // Form submit
-      document
-        .getElementById("submitBtn")
-        .addEventListener("click", function () {
-          this.textContent = "MESSAGE SENT ✓";
-          this.style.background = "#0d3320";
-          setTimeout(() => {
-            this.textContent = "SEND IT →";
-            this.style.background = "";
-          }, 3000);
-        });
+      // ── Video Modal ─────────────────────────────────────
+      const modal = document.getElementById("videoModal");
+      const modalTitle = document.getElementById("modalTitle");
+      const modalTag = document.getElementById("modalTag");
+      const modalVideoWrap = document.getElementById("modalVideoWrap");
+      const modalClose = document.getElementById("modalClose");
+
+      function openModal(title, vimeoId, orientation, tag) {
+        modalTitle.textContent = title;
+        modalTag.textContent = tag;
+
+        // Build iframe
+        const isPortrait = orientation === "portrait";
+        const wrapEl = document.createElement("div");
+        wrapEl.className = "video-ratio " + (isPortrait ? "portrait" : "landscape");
+
+        const iframe = document.createElement("iframe");
+        // Vimeo Shorts-style IDs from youtube need special handling;
+        // these are YouTube Shorts — use YouTube embed
+        iframe.src = `https://www.youtube.com/embed/${vimeoId}?autoplay=1&rel=0&modestbranding=1`;
+        iframe.allow = "autoplay; fullscreen; picture-in-picture";
+        iframe.allowFullscreen = true;
+        iframe.title = title + " demo";
+        iframe.style.border = "none";
+
+        wrapEl.appendChild(iframe);
+
+        modalVideoWrap.innerHTML = "";
+        modalVideoWrap.appendChild(wrapEl);
+
+        // Center portrait video in wrapper
+        if (isPortrait) {
+          modalVideoWrap.style.justifyContent = "center";
+          modalVideoWrap.style.padding = "0";
+          modalVideoWrap.style.background = "#000";
+        } else {
+          modalVideoWrap.style.padding = "0";
+        }
+
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        modal.classList.remove("active");
+        document.body.style.overflow = "";
+        // Small delay to let animation finish before killing iframe (stops audio)
+        setTimeout(() => {
+          modalVideoWrap.innerHTML = "";
+        }, 400);
+      }
+
+      modalClose.addEventListener("click", closeModal);
+
+      // Close on overlay click (outside modal box)
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeModal();
+      });
+
+      // Close on ESC
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("active")) closeModal();
+      });
     </script>
   </body>
 </html>
